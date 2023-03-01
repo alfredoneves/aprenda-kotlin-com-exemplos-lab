@@ -1,21 +1,24 @@
-// [Template no Kotlin Playground](https://pl.kotl.in/WcteahpyN)
+package me.dio.desafio1.kt
 
-enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
+enum class Nivel { BASICO, INTERMEDIARIO, AVANÇADO }
 
-class Usuario
-
-data class ConteudoEducacional(var nome: String, val duracao: Int = 60)
+data class Usuario(val nome: String, val id: Int)
+data class ConteudoEducacional(val nome: String, val duracao: Int, val nivel: Nivel, val avaliacao: Int)
 
 data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) {
-
     val inscritos = mutableListOf<Usuario>()
     
     fun matricular(usuario: Usuario) {
-        TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
+        inscritos.add(usuario)
     }
 }
 
 fun main() {
-    TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
-    TODO("Simule alguns cenários de teste. Para isso, crie alguns objetos usando as classes em questão.")
+    val user0: Usuario = Usuario("user0", 0)
+    val kotlin: ConteudoEducacional = ConteudoEducacional("kotlin", 20, Nivel.BASICO, 5)
+    val android_studio: ConteudoEducacional = ConteudoEducacional("android studio", 15, Nivel.INTERMEDIARIO, 4)
+    val android_developer: Formacao = Formacao("android developer", listOf(android_studio, kotlin))
+    
+    android_developer.matricular(user0)
+    println(android_developer)
 }
